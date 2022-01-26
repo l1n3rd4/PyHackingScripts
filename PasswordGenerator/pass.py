@@ -9,7 +9,7 @@ def pass_random():
     try:
         word = ''
 
-        with open("BadWare.txt", "r") as file:
+        with open("wordlist.txt", "r") as file:
             allText = file.read()
             words = list(map(str, allText.split()))
             word = random.choice(words)
@@ -47,7 +47,7 @@ def pass_phrase():
     try:
         word = ''
 
-        with open("BadWare.txt", "r") as file:
+        with open("wordlist.txt", "r") as file:
             allText = file.read()
             words = list(map(str, allText.split()))
 
